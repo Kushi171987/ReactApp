@@ -8,10 +8,27 @@ class Container extends Component {
 		this.state = {state: props.state};
 	}
 
-	componentWillReceiveProps(nextProps){
-		if(nextProps.hasOwnProperty('state')){
-			this.callApi(nextProps.state);
+	static getDerivedStateFromProps(props, state){
+		console.log(props, state);
+		if(props.hasOwnProperty('state')){
+			return props;
 		}
+		return null;
+	}
+
+	componentDidMount(){
+		console.log('componentDidMount');
+	}
+	
+	componentDidUpdate(prevProps, prevState, snapshot){
+		console.log('componentDidUpdate');
+		if(this.state.state){
+			this.callApi(this.state.state);
+		}
+	}
+
+	componentWillUnmount(){
+		console.log('componentWillUnmount')
 	}
 
 	callApi = key => {

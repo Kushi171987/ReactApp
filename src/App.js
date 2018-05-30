@@ -11,8 +11,8 @@ class App extends Component {
 		this.state = {};
 	}
 
-	componentWillMount(){
-		
+	static getDerivedStateFromProps(props, state){
+		return null;
 	}
 
   render() {
