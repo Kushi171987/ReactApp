@@ -6,7 +6,7 @@ import { withStyles, List,  ListItem, ListItemText, InputLabel, Input } from '@m
 class LeftNav extends Component {
 	constructor(props){
 		super(props);
-		this.state = {name: '', states: []};
+		this.state = {name: '', items: []};
 	}
 
 	handleChange = event => {
@@ -17,10 +17,10 @@ class LeftNav extends Component {
 
 	onBlurTextField = () => {
 		if(this.state.name) {
-			let states = this.state.states || [];
-			states.push(this.state.name);		
+			let items = this.state.items || [];
+			items.push(this.state.name);		
 			this.setState({
-				states: states,
+				items: items,
 				name: ''
 			})	
 		}
@@ -34,8 +34,8 @@ class LeftNav extends Component {
           	<Input id="name-simple" value={this.state.name} onChange={this.handleChange} onBlur={this.onBlurTextField}/>
 				<List className={classes.root} subheader={<li />}>
 				{
-					this.state.states.length > 0 &&
-						this.state.states.map((item, i) => (
+					this.state.items.length > 0 &&
+						this.state.items.map((item, i) => (
 							<ListItem key={`item-${item}`}>
 								<ListItemText primary={item} onClick={e => {this.props.onClickState(item)}}/>
 							</ListItem>

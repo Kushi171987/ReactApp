@@ -11,10 +11,6 @@ class App extends Component {
 		this.state = {};
 	}
 
-	static getDerivedStateFromProps(props, state){
-		return null;
-	}
-
   render() {
     return (
       <Router>

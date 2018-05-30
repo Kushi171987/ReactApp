@@ -4,7 +4,7 @@ import { Grid, Row, Col } from 'react-material-responsive-grid';
 import LeftNav from './LeftNav';
 import Container from './Container';
 
-const states = [
+/*const states = [
 	'Uttar Pradesh',
 	'Maharashtra',
 	'Bihar',
@@ -41,7 +41,7 @@ const states = [
 	'Dadra and Nagar Haveli',
 	'Daman and Diu',
 	'Lakshadweep'
-];
+];*/
 
 
 class Home extends Component {
@@ -62,7 +62,7 @@ class Home extends Component {
 				<Grid>
 					<Row>
 						<Col xs4={1} lg={3} md={3}>
-							<LeftNav states={states} onClickState={this.onSelectState}/>
+							<LeftNav onClickState={this.onSelectState}/>
 						</Col>
 						<Col xs4={3} lg={9} md={9}>
 							<Container state={this.state.selectedState}/>
