@@ -9,7 +9,6 @@ class Container extends Component {
 	}
 
 	static getDerivedStateFromProps(props, state){
-		console.log(props, state);
 		if(props.hasOwnProperty('state')){
 			return props;
 		}

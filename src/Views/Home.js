@@ -3,6 +3,7 @@ import { Grid, Row, Col } from 'react-material-responsive-grid';
 
 import LeftNav from './LeftNav';
 import Container from './Container';
+import Notifications from './Notifications';
 
 /*const states = [
 	'Uttar Pradesh',
@@ -60,6 +61,9 @@ class Home extends Component {
 				<header className="App-header">
 				</header>
 				<Grid>
+					<Row>
+						<Notifications message={this.state.selectedState}/>
+					</Row>					
 					<Row>
 						<Col xs4={1} lg={3} md={3}>
 							<LeftNav onClickState={this.onSelectState}/>
