@@ -51,10 +51,34 @@ class Notifications extends Component {
 
    render() {
       console.log('render');
+      // const items = [
+      //    {
+      //       term: 'A',
+      //       description: 'Letter-A'
+      //    },{
+      //          term: 'B',
+      //          description: 'Letter-B'
+      //    },{
+      //          term: 'C',
+      //          description: 'Letter-C'
+      //    },{
+      //          term: 'D',
+      //          description: 'Letter-D'
+      //    }
+      // ];
+
       return(
          <div style={{margin: '10px'}}>
             <h2 style={{display: 'inline-block'}}>Notifications:</h2> <h3 style={{display: 'inline-block'}}>{this.props.message}</h3>
          </div>
+            // <dl>
+            //     {items.map(item => (
+            //         <React.Fragment key={item.id}>
+            //             <dt>{item.term}</dt>
+            //             <dd>{item.description}</dd>
+            //         </React.Fragment>
+            //     ))}
+            // </dl>
       )
    }
 }

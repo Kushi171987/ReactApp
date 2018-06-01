@@ -16,8 +16,14 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, '../build')))
+app.set('trust proxy', true);
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+const log = (req, res, next) => {
+   console.log(req.url, req.params);
+   next();
+};
+
+app.use('/', log, indexRouter);
+app.use('/users', log, usersRouter);
 
 module.exports = app;
