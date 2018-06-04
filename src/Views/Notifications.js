@@ -41,8 +41,8 @@ class Notifications extends Component {
       console.log('getSnapshotBeforeUpdate');
    }*/
 
-   componentDidCatche(){
-      console.log('componentDidCatche');
+   componentDidCatche(error, info){
+      console.log('componentDidCatche', error, info);
    }
 
    componentWillUnmount(){

@@ -5,6 +5,8 @@ import LeftNav from './LeftNav';
 import Container from './Container';
 import Notifications from './Notifications';
 
+import ErrorBoundary from './Errors/ErrorBoundary';
+
 /*const states = [
 	'Uttar Pradesh',
 	'Maharashtra',
@@ -62,14 +64,20 @@ class Home extends Component {
 				</header>
 				<Grid>
 					<Row>
-						<Notifications message={this.state.selectedState}/>
+						<ErrorBoundary>
+							<Notifications message={this.state.selectedState}/>
+						</ErrorBoundary>
 					</Row>					
 					<Row>
 						<Col xs4={1} lg={3} md={3}>
-							<LeftNav onClickState={this.onSelectState}/>
+							<ErrorBoundary>
+								<LeftNav onClickState={this.onSelectState}/>
+							</ErrorBoundary>
 						</Col>
 						<Col xs4={3} lg={9} md={9}>
-							<Container state={this.state.selectedState}/>
+							<ErrorBoundary>
+								<Container state={this.state.selectedState}/>
+							</ErrorBoundary>
 						</Col>
 					</Row>
 			</Grid>
