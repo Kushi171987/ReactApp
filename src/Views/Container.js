@@ -5,12 +5,15 @@ import Axios from '../Axios/Axios';
 class Container extends Component {
 	constructor(props){
 		super(props);
-		this.state = {state: props.state};
+		this.state = {key: props.item, name: null};
 	}
 
 	static getDerivedStateFromProps(props, state){
-		if(props.hasOwnProperty('state')){
-			return props;
+		if(props.item !== state.key){
+			return {
+				key: props.item,
+				name: null
+			};
 		}
 		return null;
 	}
@@ -19,10 +22,10 @@ class Container extends Component {
 		console.log('componentDidMount');
 	}
 	
-	componentDidUpdate(prevProps, prevState, snapshot){
+	componentDidUpdate(prevProps, prevState){
 		console.log('componentDidUpdate');
-		if(this.state.state){
-			this.callApi(this.state.state);
+		if (this.state.name === null) {
+			this.callApi(this.state.key);
 		}
 	}
 
@@ -35,7 +38,7 @@ class Container extends Component {
 		.then(response => {
 			console.log(response.data);
 			this.setState({
-				state: response.data
+				name: response.data
 			});
 		}).catch(error => {
 			console.error(error.data);
@@ -46,7 +49,7 @@ class Container extends Component {
 		return (
 			<div  className='Container'>
 				<span className='Make-Center'>
-					{this.state.state}
+					{this.state.name}
 				</span>	
       	</div>
 		)

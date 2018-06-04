@@ -50,11 +50,11 @@ import ErrorBoundary from './Errors/ErrorBoundary';
 class Home extends Component {
 	constructor(props){
 		super(props);
-		this.state = {selectedState: undefined};
+		this.state = {selectedItem: undefined};
 	}
 
 	onSelectState = (item) => {
-		this.setState({selectedState: item});
+		this.setState({selectedItem: item});
 	}
 
 	render() {
@@ -65,7 +65,7 @@ class Home extends Component {
 				<Grid>
 					<Row>
 						<ErrorBoundary>
-							<Notifications message={this.state.selectedState}/>
+							<Notifications message={this.state.selectedItem}/>
 						</ErrorBoundary>
 					</Row>					
 					<Row>
@@ -76,7 +76,7 @@ class Home extends Component {
 						</Col>
 						<Col xs4={3} lg={9} md={9}>
 							<ErrorBoundary>
-								<Container state={this.state.selectedState}/>
+								<Container item={this.state.selectedItem}/>
 							</ErrorBoundary>
 						</Col>
 					</Row>
