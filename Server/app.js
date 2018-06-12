@@ -6,7 +6,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var errorHandler = require('./Errors/error-hanlder');
+var errors  = require('./Errors/error-hanlder');
 
 var app = express();
 
@@ -26,6 +26,9 @@ const log = (req, res, next) => {
 
 app.use('/', log, indexRouter);
 app.use('/users', log, usersRouter);
-app.use(errorHandler);
+
+app.use(errors.logErrors);
+app.use(errors.clientErrorHandler);
+app.use(errors.errorHandler);
 
 module.exports = app;

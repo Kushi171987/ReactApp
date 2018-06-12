@@ -33,12 +33,13 @@ router.get('/*', (req, res, next) => {
 });
 
 router.get('/Reddy', (req, res, next) => {
-   console.log('/Reddy Router', req.params[0])
+   console.log('/Reddy Router', req.params[0]);
+   // throw new Error('Test Error')
    res.send(req.params[0])
 })
 
 router.get('/Kushi', (req, res, next) => {
-   console.log('/Kushi Router', req.params)
+   console.log('/Kushi Router', req.params);
    res.send(req.params[0])
 })
 
