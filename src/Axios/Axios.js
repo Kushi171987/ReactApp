@@ -66,12 +66,26 @@ const myResponseInterceptor = axios.interceptors.response.use(
       console.log(response);
       return response;
    }, (error) => {
-      console.warn(error);
-      // if there is no authorization force the user to logout.
-      if( (error.response && error.response.data) && (error.response.data.detail === "Authentication credentials were not provided.") ) {
-         axios.defaults.headers.common['authorization'] = '';
-         util.logout();
-      }
+      if (error.response) {
+         // The request was made and the server responded with a status code
+         // that falls out of the range of 2xx
+         console.warn(error.response.data);
+         console.warn(error.response.status);
+         console.warn(error.response.headers);
+         // if there is no authorization force the user to logout.
+         if( (error.response && error.response.data) && (error.response.data.detail === "Authentication credentials were not provided.") ) {
+               axios.logout();
+         }
+      } else if (error.request) {
+         // The request was made but no response was received
+         // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+         // http.ClientRequest in node.js
+         console.warn(error.request);
+      } else {
+         // Something happened in setting up the request that triggered an Error
+         console.warn('Error', error.message);
+      }
+      console.warn(error.config);
       return Promise.reject(error);
    }
 );
