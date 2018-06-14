@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-// import util from './Util';
+import util from '../Util/Util';
 
 
 // const devUrl = 'http://18.220.197.216/';
@@ -17,34 +17,33 @@ axios.getBaseUrl= function(){
    return getBaseUrl();
 }
 
-
 axios.setAPIToken = () => {
-   axios.defaults.headers.common['authorization'] = '';
+   axios.defaults.headers.common['authorizSation'] = util.getToken();;
 }
-
 
 axios.setAPIVersion = (version) => {
    axios.defaults.headers['api-version'] = version;
 }
 
-
 axios.logout = () => {
    delete axios.defaults.headers.common['authorization'];
-//    util.logout();
+   util.logout();
 }
 
-
 axios.defaults.baseURL = getBaseUrl();
+// util.setToken('KUSHALAKUMARREDDYGAJJALA');
 axios.setAPIToken();
 
-
-axios.interceptors.request.use( 
+/*
+* Request Interceptor
+*/
+const myRequestInterceptor = axios.interceptors.request.use( 
    (config) => {
-      // console.log(config);
-      let token = ''; // util.getToken();
+      console.log(config);
+      let token = util.getToken();
       if (!(token && token.length > 0)) {
             delete axios.defaults.headers.common['authorization'];
-//             util.removeToken();
+            util.removeToken();
       }
       return config;
    }, (error) => {
@@ -52,24 +51,36 @@ axios.interceptors.request.use(
       return Promise.reject(error);
    }
 );
-// axios.interceptors.request.eject(myRequestInterceptor);
 
+axios.ejectRequestInterceptor = () => {
+   if(myRequestInterceptor){
+      this.interceptors.request.eject(myRequestInterceptor);
+   }
+}
 
-axios.interceptors.response.use(
+/*
+* Response Interceptor
+*/
+const myResponseInterceptor = axios.interceptors.response.use(
    (response) => {
-      // console.log(response);
+      console.log(response);
       return response;
    }, (error) => {
       console.warn(error);
       // if there is no authorization force the user to logout.
       if( (error.response && error.response.data) && (error.response.data.detail === "Authentication credentials were not provided.") ) {
          axios.defaults.headers.common['authorization'] = '';
-//          util.logout();
+         util.logout();
       }
       return Promise.reject(error);
    }
 );
-// axios.interceptors.request.eject(myResponseInterceptor);
+
+axios.ejectResponseInterceptor = () => {
+   if(myResponseInterceptor){
+      this.interceptors.response.eject(myResponseInterceptor);
+   }
+}
 
 axios.setAPIVersion('1.0');
 
