@@ -5,16 +5,12 @@ import util from '../Util/Util';
 
 // const devUrl = 'http://18.220.197.216/';
 
-const getBaseUrl = () => {
+axios.getBaseUrl = function(){
    let baseUrl = window.location.protocol + '//' + window.location.host + '/';
 //    if( (window.location.host.indexOf('localhost') !== -1) || (window.location.host.indexOf('192.168') !== -1 ) ) {
 //       baseUrl = devUrl;
 //    }
    return baseUrl;
-};
-
-axios.getBaseUrl= function(){
-   return getBaseUrl();
 }
 
 axios.setAPIToken = () => {
@@ -30,7 +26,7 @@ axios.logout = () => {
    util.logout();
 }
 
-axios.defaults.baseURL = getBaseUrl();
+axios.defaults.baseURL = axios.getBaseUrl();
 // util.setToken('KUSHALAKUMARREDDYGAJJALA');
 axios.setAPIToken();
 
