@@ -3,13 +3,13 @@ import axios from 'axios';
 import util from '../Util/Util';
 
 
-// const devUrl = 'http://18.220.197.216/';
-
+const devUrl = ''; // Replace the actual dev server URL.
+ 
 axios.getBaseUrl = function(){
    let baseUrl = window.location.protocol + '//' + window.location.host + '/';
-//    if( (window.location.host.indexOf('localhost') !== -1) || (window.location.host.indexOf('192.168') !== -1 ) ) {
-//       baseUrl = devUrl;
-//    }
+   if(util.isLocalhost) {
+      baseUrl = devUrl;
+   }
    return baseUrl;
 }
 
