@@ -31,7 +31,16 @@ class Container extends Component {
 
 	componentWillUnmount(){
 		console.log('componentWillUnmount')
-	}
+   }
+   
+   //Using async/await
+   // async callApi(key) {
+   //    try{
+   //       let response = await Axios.get(key);
+   //    }catch(error){
+   //       console.error(error);
+   //    }
+   // }
 
 	callApi = key => {
 		Axios.get(key)

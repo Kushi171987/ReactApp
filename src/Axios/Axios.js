@@ -35,7 +35,7 @@ axios.setAPIToken();
 */
 const myRequestInterceptor = axios.interceptors.request.use( 
    (config) => {
-      console.log(config);
+//       console.log(config);
       let token = util.getToken();
       if (!(token && token.length > 0)) {
             delete axios.defaults.headers.common['authorization'];
@@ -59,7 +59,7 @@ axios.ejectRequestInterceptor = () => {
 */
 const myResponseInterceptor = axios.interceptors.response.use(
    (response) => {
-      console.log(response);
+      // console.log(response);
       return response;
    }, (error) => {
       if (error.response) {
