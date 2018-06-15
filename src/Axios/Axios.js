@@ -3,14 +3,27 @@ import axios from 'axios';
 import util from '../Util/Util';
 
 
-const devUrl = ''; // Replace the actual dev server URL.
- 
+// Replace actual server's host url & api url in the place of `realsite.com` & `https://api.realsite.com`
+function getBackendUrl(){
+   let backendHost;
+   const hostname = window && window.location && window.location.hostname;
+   
+   if(hostname === 'realsite.com') {
+     backendHost = 'https://api.realsite.com';
+   } else if(hostname === 'staging.realsite.com') {
+     backendHost = 'https://staging.api.realsite.com';
+   } else if(/^qa/.test(hostname)) {
+     backendHost = `https://api.${hostname}`;
+   } else if(process && process.env.REACT_APP_BACKEND_HOST) {
+     backendHost = process.env.REACT_APP_BACKEND_HOST;
+   } else {
+      backendHost = window.location.protocol + '//' + window.location.host + '/';
+   }
+   return backendHost;   
+}
+
 axios.getBaseUrl = function(){
-   let baseUrl = window.location.protocol + '//' + window.location.host + '/';
-   if(util.isLocalhost) {
-      baseUrl = devUrl;
-   }
-   return baseUrl;
+   return getBackendUrl(); //'';
 }
 
 axios.setAPIToken = () => {
