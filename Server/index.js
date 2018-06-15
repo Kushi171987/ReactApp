@@ -4,9 +4,10 @@
  * Module dependencies.
  */
 
-var app = require('./app');
 var debug = require('debug')('express:server');
 var http = require('http');
+var app = require('./app');
+var proxy = require('./proxy');
 
 /**
  * Get port from environment and store in Express.
@@ -20,6 +21,7 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
+proxy.configure(server);
 
 /**
  * Listen on provided port, on all network interfaces.

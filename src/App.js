@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from './Views/Home';
 import About from './Views/About';
 import NoMatch from './NoMatch';
+import Chat from './Views/Chat';
 
 class App extends Component {
 	constructor(props){
