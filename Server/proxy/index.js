@@ -7,7 +7,7 @@ function configure(server){
    let clientIndex = 0;
 
    emitDate = (client) => {
-      setInterval(() => {
+      client.interval =  setInterval(() => {
          let date = new Date();
          let dateString = date.toDateString() + ' : ' + Date.now()
          console.log('DATE: ', dateString);
@@ -28,6 +28,10 @@ function configure(server){
 
       client.on('disconnect', function(){
          console.log('client disconnected: <-- ', this.name);
+         if(this.interval){
+            console.log('Date Interval is cleared for : <-- ', this.name);
+            clearInterval(this.interval);
+         }
       });
 
    });
