@@ -6,17 +6,22 @@ class Chat extends Component {
   constructor() {
     super();
     this.state = {
-      response: false,
-      endpoint: Axios.getBaseUrl()
+      response: false
     };
   }
   componentDidMount() {
       let self = this;
-      const { endpoint } = this.state;
-      const socket = socketIOClient(endpoint);
+      const socket = socketIOClient(Axios.getBaseUrl());
       socket.on("date", function(data){
          self.setState({ response: data });
       });
+      socket.on('disconnect', function(error){
+         let errorMsg = error ? error.message : 'socket is closed.'
+         console.warn(errorMsg, socket.connected);
+         if(socket.connected){
+            socket.close();
+         }
+      })
   }
   render() {
     const { response } = this.state;
