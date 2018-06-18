@@ -14,7 +14,6 @@ class Chat extends Component {
       let self = this;
       const { endpoint } = this.state;
       const socket = socketIOClient(endpoint);
-      socket.emit('data', 'KUSHI');
       socket.on("date", function(data){
          self.setState({ response: data });
       });

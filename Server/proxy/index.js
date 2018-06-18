@@ -6,20 +6,24 @@ function configure(server){
    let clients = [];
    let clientIndex = 0;
 
+   emitDate = (client) => {
+      setInterval(() => {
+         let date = new Date();
+         let dateString = date.toDateString() + ' : ' + Date.now()
+         console.log('DATE: ', dateString);
+         client.emit('date', dateString);
+      }, 1000)
+   }
+
    io.on('connection', function(client) {
       client.name = clientIndex++
       clients[client.name] = client;
 
       console.log('Client connected: --> ', client.name);
-      
-      client.on('data', function(data) {
+      emitDate(client);
+
+      client.on('message', function(data) {
          console.log(data);
-         setInterval(() => {
-            let date = new Date();
-            let dateString = date.toDateString() + ' : ' + Date.now()
-            console.log('DATE: ', dateString);
-            client.emit('date', dateString);
-         }, 1000)
       });
 
       client.on('disconnect', function(){
