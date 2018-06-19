@@ -19,17 +19,17 @@ function configure(server){
       client.name = clientIndex++
       clients[client.name] = client;
 
-      console.log('Client connected: --> ', client.name);
+      console.log(client.name, ' connected');
       emitDate(client);
 
       client.on('message', function(data) {
-         console.log(data);
+         console.log('onmessage', data);
       });
 
-      client.on('disconnect', function(){
-         console.log('client disconnected: <-- ', this.name);
+      client.on('disconnect', function(reason){
+         console.log(reason);
+         console.log( this.name, ' disconnected');
          if(this.interval){
-            console.log('Date Interval is cleared for : <-- ', this.name);
             clearInterval(this.interval);
          }
       });
