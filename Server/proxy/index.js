@@ -16,7 +16,7 @@ function configure(server){
    }
 
    io.on('connection', function(client) {
-      client.name = clientIndex++
+      client.name = ++clientIndex;
       clients[client.name] = client;
 
       console.log(client.name, ' connected');
@@ -27,13 +27,17 @@ function configure(server){
       });
 
       client.on('disconnect', function(reason){
-         console.log(reason);
+         console.log('disconnect', reason);
          console.log( this.name, ' disconnected');
          if(this.interval){
             clearInterval(this.interval);
          }
       });
 
+      client.on('error', function(error){
+         console.error('error', error);
+      });
+      
    });
 }
 
