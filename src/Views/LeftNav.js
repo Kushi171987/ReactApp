@@ -15,15 +15,17 @@ class LeftNav extends Component {
 		}
 	};
 
-	onBlurTextField = () => {
-		if(this.state.name) {
-			let items = this.state.items || [];
-			items.push(this.state.name);		
-			this.setState({
-				items: items,
-				name: ''
-			})	
-		}
+	onBlurTextField = (event) => {
+      if (event.key === 'Enter') {
+         if(this.state.name) {
+            let items = this.state.items || [];
+            items.push(this.state.name);		
+            this.setState({
+               items: items,
+               name: ''
+            });
+         }
+      }
 	}
 
 	render() {
@@ -31,7 +33,7 @@ class LeftNav extends Component {
 		return (
 			<div className='LeftNav'>
 				<InputLabel htmlFor="name-simple">Name </InputLabel>
-          	<Input id="name-simple" value={this.state.name} onChange={this.handleChange} onBlur={this.onBlurTextField}/>
+          	<Input id="name-simple" value={this.state.name} onKeyPress={this.onBlurTextField} onChange={this.handleChange}/>
 				<List className={classes.root} subheader={<li />}>
 				{
 					this.state.items.length > 0 &&
