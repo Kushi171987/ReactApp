@@ -17,32 +17,38 @@ function Client(socket, id, name) {
          console.log('DATE: ', dateString);
          this.emit('date', dateString);
       }, 1000);
-   }
+   };
 
    removeListeners = () => {
       this.removeAllListeners()
       if(self.interval){
          clearInterval(self.interval);
       }
-   }
+   };
 
-   this.socket.on(C.MESSAGE, function(data) {
+   socket.on(C.MESSAGE, function(data) {
       console.log(C.MESSAGE, data);
    });
 
-   this.socket.on(C.DISCONNECT, function(reason){
+   socket.on(C.DISCONNECT, function(reason){
       console.log(self.name, 'disconnected, Reasion:', reason);
       removeListeners();
    });
 
-   this.socket.on(C.ERROR, function(error){
+   socket.on(C.ERROR, function(error){
       console.error(C.ERROR, error);
       removeListeners();
    });
 
    this.emit = function(key, value) {
-      this.socket.emit(key, value);
-   }
+      socket.emit(key, value);
+   };
+
+   this.close = () => {
+      if(socket && socket.connected){
+         socket.disconnect();
+      }
+   };
 
    emitDate();
 }
