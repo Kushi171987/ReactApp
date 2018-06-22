@@ -10,12 +10,12 @@ class LeftNav extends Component {
 	}
 
 	handleChange = event => {
-		if(event.target && event.target.value) {
+		if(event.target) {
 			this.setState({ name: event.target.value });
 		}
 	};
 
-	onBlurTextField = (event) => {
+	onPressEnter = (event) => {
       if (event.key === 'Enter') {
          if(this.state.name) {
             let items = this.state.items || [];
@@ -33,7 +33,7 @@ class LeftNav extends Component {
 		return (
 			<div className='LeftNav'>
 				<InputLabel htmlFor="name-simple">Name </InputLabel>
-          	<Input id="name-simple" value={this.state.name} onKeyPress={this.onBlurTextField} onChange={this.handleChange}/>
+          	<Input id="name-simple" value={this.state.name} onKeyPress={this.onPressEnter} onChange={this.handleChange}/>
 				<List className={classes.root} subheader={<li />}>
 				{
 					this.state.items.length > 0 &&
