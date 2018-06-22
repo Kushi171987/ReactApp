@@ -6,14 +6,18 @@ class Chat extends Component {
   constructor() {
     super();
     this.state = {
-      response: false
+      date: false,
+      temp: false
     };
   }
   componentDidMount() {
       let self = this;
       const socket = socketIOClient(Axios.getBaseUrl());
       socket.on("date", function(data){
-         self.setState({ response: data });
+         self.setState({ date: data });
+      });
+      socket.on("temp", function(data){
+         self.setState({ temp: data });
       });
       socket.on('disconnect', function(error){
          let errorMsg = error ? error.message : 'socket is closed.'
@@ -24,13 +28,18 @@ class Chat extends Component {
       })
   }
   render() {
-    const { response } = this.state;
+    const { date, temp } = this.state;
     return (
       <div style={{ textAlign: "center" }}>
-        {response
-          ? <p>
-              Date is: {response}
-            </p>
+        {date && temp
+          ? <div>
+               <p>
+                  Date is: {date}
+               </p>
+               <p>
+                  Temp is: {temp}
+               </p>
+            </div>
           : <p>Loading...</p>}
       </div>
     );

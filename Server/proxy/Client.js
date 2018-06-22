@@ -1,3 +1,6 @@
+var request = require('request');
+
+var http = require('./lib/http');
 var C = require('./lib/constants');
 var eventEmitter = require('./lib/event-emitter');
 
@@ -10,14 +13,35 @@ function Client(socket, id, name) {
 
    let self = this;
 
-   emitDate = () => {
+   getTemparature = (callback) => {
+      let url = `http://api.openweathermap.org/data/2.5/weather?q=Hyderabad,In&units=imperial&appid=${C.APP_ID}`
+      request(url, function (err, response, body) {
+         if(err){
+            console.error(err);
+            callback("Error, please try again");
+         } else {
+            let weather = JSON.parse(body)
+            if(weather.main == undefined){
+               callback("Error, please try again");
+            } else {let temp = ((weather.main.temp-32) / 1.8).toFixed(2);
+               let weatherText = `It's ${temp} degrees (Celsius) in ${weather.name}!`;
+               callback(weatherText);
+            }
+         }
+      });
+   }
+
+   doEmit = () => {
       this.interval =  setInterval(() => {
          let date = new Date();
          let dateString = date.toDateString() + ' : ' + Date.now()
-         console.log('DATE: ', dateString);
          this.emit('date', dateString);
-      }, 1000);
-   };
+
+         getTemparature((tempTxt) => {
+            this.emit('temp', tempTxt);
+         });
+      }, 5000);
+   }
 
    removeListeners = () => {
       this.removeAllListeners()
@@ -50,7 +74,7 @@ function Client(socket, id, name) {
       }
    };
 
-   emitDate();
+   doEmit();
 }
 
 eventEmitter.makeEmitter(Client);
