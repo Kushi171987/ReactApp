@@ -1,6 +1,7 @@
+var Socket = require('socket.io');
+
 var clients = require('./clients');
 var C = require('./lib/constants');
-var Socket = require('socket.io');
 
 function configure(server){
    console.log('configuring the proxy server');

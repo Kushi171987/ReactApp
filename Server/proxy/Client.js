@@ -7,10 +7,10 @@ var eventEmitter = require('./lib/event-emitter');
 let url = `http://api.openweathermap.org/data/2.5/weather?q=Hyderabad,In&units=imperial&appid=${C.APP_ID}`
 
 
-function Client(socket, id, name) {
+function Client(socket, id) {
    this.id = id;
    this.socket = socket;
-   this.name = name;
+   this.name = id;
    this.interval = undefined;
    eventEmitter.instantiateEmitter(this);
 

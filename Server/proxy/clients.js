@@ -13,7 +13,7 @@ module.exports.length = () => {
 
 module.exports.addWithConnection = (conn) => {
    let id = ++C.id;
-   let client = new Client(conn, id, id);
+   let client = new Client(conn, id);
    clients[client.id] = client;
    console.log(client.id, ' connected');
    return client.id;
