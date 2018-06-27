@@ -1,4 +1,5 @@
 var http = require('http');
+var request = require('request');
 
 function get(path, success, error){ //http://nodejs.org/dist/index.json
    http.get(path, (res) => {
@@ -36,6 +37,19 @@ function get(path, success, error){ //http://nodejs.org/dist/index.json
    });
 }
 
+function doRequest(url) {
+   return new Promise ((resolve, reject) => {
+      request(url, (error, res, body) => {
+         if (!error && res.statusCode === 200) {
+            resolve(body);
+         } else {
+            reject(error);
+         }
+      });
+   });
+}
+
 module.exports = {
-   get: get
+   get: get,
+   request: doRequest
 }

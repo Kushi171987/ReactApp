@@ -34,7 +34,7 @@ class Container extends Component {
    }
    
    //Using async/await
-   // async callApi(key) {
+   // async function callApi(key) {
    //    try{
    //       let response = await Axios.get(key);
    //    }catch(error){
