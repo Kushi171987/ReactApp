@@ -12,7 +12,7 @@ var errors  = require('./Errors/error-hanlder');
 var C = require('./Util/constants');
 
 var app = express();
-app.locals.title = 'ReactAppServer';
+app.locals.title = 'AppServer';
 
 app.use(logger('dev'));
 app.use(express.json());
