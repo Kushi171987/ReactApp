@@ -92,3 +92,21 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
+// Process releted callbacks
+process.on('exit', (code) => {
+   console.log(`About to exit with code: ${code}`);
+});
+
+process.on('unhandledRejection', (reason, promise) => {
+   console.log('Unhandled Rejection at:', reason.stack || reason)
+});
+
+process.on('uncaughtException', (error) => {
+   console.log('uncaughtException', error.stack);
+});
+
+process.on('warning', (warning) => {
+   console.warn(warning.name, warning.message);    // Print the warning name, message
+   console.warn(warning.stack);   // Print the stack trace
+ });
