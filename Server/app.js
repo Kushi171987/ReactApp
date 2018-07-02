@@ -9,7 +9,7 @@ var admin = require('./admin');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
-var errors  = require('./Errors/error-hanlder');
+var debug  = require('./Util/debug-hanlder');
 var C = require('./Util/constants');
 
 var app = express();
@@ -24,19 +24,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '../build'), C.options))
 app.set('trust proxy', true);
 
-const log = (req, res, next) => {
-   console.log(req.url, req.params);
-   next();
-};
-
-
 app.use('/admin', admin);
+app.use('/', debug.log, indexRouter);
+app.use('/users', debug.log, usersRouter);
 
-app.use('/', log, indexRouter);
-app.use('/users', log, usersRouter);
-
-app.use(errors.logErrors);
-app.use(errors.clientErrorHandler);
-app.use(errors.errorHandler);
+app.use(debug.logErrors);
+app.use(debug.clientErrorHandler);
+app.use(debug.errorHandler);
 
 module.exports = app;

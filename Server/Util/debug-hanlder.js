@@ -1,4 +1,9 @@
 
+const log = (req, res, next) => {
+   console.log(req.url, req.params);
+   next();
+};
+
 var errorHandler = (err, req, res, next) => {
    res.status(500).send('Something broke!')
 }
@@ -16,4 +21,4 @@ var clientErrorHandler = (err, req, res, next) => {
    }
  }
 
-module.exports = {logErrors: logErrors, clientErrorHandler: clientErrorHandler, errorHandler: errorHandler};
+module.exports = {log: log, logErrors: logErrors, clientErrorHandler: clientErrorHandler, errorHandler: errorHandler};
