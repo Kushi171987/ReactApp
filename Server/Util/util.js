@@ -9,11 +9,11 @@ var toString = Object.prototype.toString;
 
 function bind(fn, thisArg) {
    return function wrap() {
-     var args = new Array(arguments.length);
-     for (var i = 0; i < args.length; i++) {
-       args[i] = arguments[i];
-     }
-     return fn.apply(thisArg, args);
+      var args = new Array(arguments.length);
+      for (var i = 0; i < args.length; i++) {
+         args[i] = arguments[i];
+      }
+      return fn.apply(thisArg, args);
    };
 };
  
@@ -24,7 +24,7 @@ function bind(fn, thisArg) {
  * @returns {boolean} True if value is an Array, otherwise false
  */
 function isArray(val) {
-  return toString.call(val) === '[object Array]';
+   return toString.call(val) === '[object Array]';
 }
 
 /**
@@ -34,7 +34,7 @@ function isArray(val) {
  * @returns {boolean} True if value is an ArrayBuffer, otherwise false
  */
 function isArrayBuffer(val) {
-  return toString.call(val) === '[object ArrayBuffer]';
+   return toString.call(val) === '[object ArrayBuffer]';
 }
 
 /**
@@ -44,7 +44,7 @@ function isArrayBuffer(val) {
  * @returns {boolean} True if value is an FormData, otherwise false
  */
 function isFormData(val) {
-  return (typeof FormData !== 'undefined') && (val instanceof FormData);
+   return (typeof FormData !== 'undefined') && (val instanceof FormData);
 }
 
 /**
@@ -54,13 +54,13 @@ function isFormData(val) {
  * @returns {boolean} True if value is a view on an ArrayBuffer, otherwise false
  */
 function isArrayBufferView(val) {
-  var result;
-  if ((typeof ArrayBuffer !== 'undefined') && (ArrayBuffer.isView)) {
-    result = ArrayBuffer.isView(val);
-  } else {
-    result = (val) && (val.buffer) && (val.buffer instanceof ArrayBuffer);
-  }
-  return result;
+   var result;
+   if ((typeof ArrayBuffer !== 'undefined') && (ArrayBuffer.isView)) {
+      result = ArrayBuffer.isView(val);
+   } else {
+      result = (val) && (val.buffer) && (val.buffer instanceof ArrayBuffer);
+   }
+   return result;
 }
 
 /**
@@ -70,7 +70,7 @@ function isArrayBufferView(val) {
  * @returns {boolean} True if value is a String, otherwise false
  */
 function isString(val) {
-  return typeof val === 'string';
+   return typeof val === 'string';
 }
 
 /**
@@ -80,7 +80,7 @@ function isString(val) {
  * @returns {boolean} True if value is a Number, otherwise false
  */
 function isNumber(val) {
-  return typeof val === 'number';
+   return typeof val === 'number';
 }
 
 /**
@@ -90,7 +90,7 @@ function isNumber(val) {
  * @returns {boolean} True if the value is undefined, otherwise false
  */
 function isUndefined(val) {
-  return typeof val === 'undefined';
+   return typeof val === 'undefined';
 }
 
 /**
@@ -100,7 +100,7 @@ function isUndefined(val) {
  * @returns {boolean} True if value is an Object, otherwise false
  */
 function isObject(val) {
-  return val !== null && typeof val === 'object';
+   return val !== null && typeof val === 'object';
 }
 
 /**
@@ -110,7 +110,7 @@ function isObject(val) {
  * @returns {boolean} True if value is a Date, otherwise false
  */
 function isDate(val) {
-  return toString.call(val) === '[object Date]';
+   return toString.call(val) === '[object Date]';
 }
 
 /**
@@ -120,7 +120,7 @@ function isDate(val) {
  * @returns {boolean} True if value is a File, otherwise false
  */
 function isFile(val) {
-  return toString.call(val) === '[object File]';
+   return toString.call(val) === '[object File]';
 }
 
 /**
@@ -140,7 +140,7 @@ function isBlob(val) {
  * @returns {boolean} True if value is a Function, otherwise false
  */
 function isFunction(val) {
-  return toString.call(val) === '[object Function]';
+   return toString.call(val) === '[object Function]';
 }
 
 /**
@@ -150,7 +150,7 @@ function isFunction(val) {
  * @returns {boolean} True if value is a Stream, otherwise false
  */
 function isStream(val) {
-  return isObject(val) && isFunction(val.pipe);
+   return isObject(val) && isFunction(val.pipe);
 }
 
 /**
@@ -160,7 +160,7 @@ function isStream(val) {
  * @returns {boolean} True if value is a URLSearchParams object, otherwise false
  */
 function isURLSearchParams(val) {
-  return typeof URLSearchParams !== 'undefined' && val instanceof URLSearchParams;
+   return typeof URLSearchParams !== 'undefined' && val instanceof URLSearchParams;
 }
 
 /**
@@ -170,7 +170,7 @@ function isURLSearchParams(val) {
  * @returns {String} The String freed of excess whitespace
  */
 function trim(str) {
-  return str.replace(/^\s*/, '').replace(/\s*$/, '');
+   return str.replace(/^\s*/, '').replace(/\s*$/, '');
 }
 
 /**
@@ -187,13 +187,13 @@ function trim(str) {
  *  navigator.product -> 'ReactNative'
  */
 function isStandardBrowserEnv() {
-  if (typeof navigator !== 'undefined' && navigator.product === 'ReactNative') {
-    return false;
-  }
-  return (
-    typeof window !== 'undefined' &&
-    typeof document !== 'undefined'
-  );
+   if (typeof navigator !== 'undefined' && navigator.product === 'ReactNative') {
+      return false;
+   }
+   return (
+      typeof window !== 'undefined' &&
+      typeof document !== 'undefined'
+   );
 }
 
 /**
@@ -209,30 +209,30 @@ function isStandardBrowserEnv() {
  * @param {Function} fn The callback to invoke for each item
  */
 function forEach(obj, fn) {
-  // Don't bother if no value provided
-  if (obj === null || typeof obj === 'undefined') {
-    return;
-  }
+   // Don't bother if no value provided
+   if (obj === null || typeof obj === 'undefined') {
+      return;
+   }
 
-  // Force an array if not already something iterable
-  if (typeof obj !== 'object') {
-    /*eslint no-param-reassign:0*/
-    obj = [obj];
-  }
+   // Force an array if not already something iterable
+   if (typeof obj !== 'object') {
+      /*eslint no-param-reassign:0*/
+      obj = [obj];
+   }
 
-  if (isArray(obj)) {
-    // Iterate over array values
-    for (var i = 0, l = obj.length; i < l; i++) {
-      fn.call(null, obj[i], i, obj);
-    }
-  } else {
-    // Iterate over object keys
-    for (var key in obj) {
-      if (Object.prototype.hasOwnProperty.call(obj, key)) {
-        fn.call(null, obj[key], key, obj);
+   if (isArray(obj)) {
+      // Iterate over array values
+      for (var i = 0, l = obj.length; i < l; i++) {
+         fn.call(null, obj[i], i, obj);
       }
-    }
-  }
+   } else {
+      // Iterate over object keys
+      for (var key in obj) {
+         if (Object.prototype.hasOwnProperty.call(obj, key)) {
+         fn.call(null, obj[key], key, obj);
+         }
+      }
+   }
 }
 
 /**
@@ -253,19 +253,19 @@ function forEach(obj, fn) {
  * @returns {Object} Result of all merge properties
  */
 function merge(/* obj1, obj2, obj3, ... */) {
-  var result = {};
-  function assignValue(val, key) {
-    if (typeof result[key] === 'object' && typeof val === 'object') {
-      result[key] = merge(result[key], val);
-    } else {
-      result[key] = val;
-    }
-  }
+   var result = {};
+   function assignValue(val, key) {
+      if (typeof result[key] === 'object' && typeof val === 'object') {
+         result[key] = merge(result[key], val);
+      } else {
+         result[key] = val;
+      }
+   }
 
-  for (var i = 0, l = arguments.length; i < l; i++) {
-    forEach(arguments[i], assignValue);
-  }
-  return result;
+   for (var i = 0, l = arguments.length; i < l; i++) {
+      forEach(arguments[i], assignValue);
+   }
+   return result;
 }
 
 /**
@@ -277,35 +277,86 @@ function merge(/* obj1, obj2, obj3, ... */) {
  * @return {Object} The resulting value of object a
  */
 function extend(a, b, thisArg) {
-  forEach(b, function assignValue(val, key) {
-    if (thisArg && typeof val === 'function') {
-      a[key] = bind(val, thisArg);
-    } else {
-      a[key] = val;
-    }
-  });
-  return a;
+   forEach(b, function assignValue(val, key) {
+      if (thisArg && typeof val === 'function') {
+         a[key] = bind(val, thisArg);
+      } else {
+         a[key] = val;
+      }
+   });
+   return a;
 }
 
+// Changes XML to JSON
+function xmlToJson(xml) {
+	var jsonObj = {};
+
+	if (xml.nodeType == 1) { // element
+		// do attributes
+		if (xml.attributes.length > 0) {
+		jsonObj["@attributes"] = {};
+			for (var j = 0; j < xml.attributes.length; j++) {
+				var attribute = xml.attributes.item(j);
+				jsonObj["@attributes"][attribute.nodeName] = attribute.nodeValue;
+			}
+		}
+	} else if (xml.nodeType == 3) { // text
+		jsonObj = xml.nodeValue;
+	}
+
+	// do children
+	if (xml.hasChildNodes()) {
+		for(var i = 0; i < xml.childNodes.length; i++) {
+			var item = xml.childNodes.item(i);
+			var nodeName = item.nodeName;
+			if (typeof(jsonObj[nodeName]) == "undefined") {
+				jsonObj[nodeName] = xmlToJson(item);
+			} else {
+				if (typeof(jsonObj[nodeName].push) == "undefined") {
+					var old = jsonObj[nodeName];
+					jsonObj[nodeName] = [];
+					jsonObj[nodeName].push(old);
+				}
+				jsonObj[nodeName].push(xmlToJson(item));
+			}
+		}
+	}
+	return jsonObj;
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 module.exports = {
-  isArray: isArray,
-  isArrayBuffer: isArrayBuffer,
-//   isBuffer: isBuffer,
-  isFormData: isFormData,
-  isArrayBufferView: isArrayBufferView,
-  isString: isString,
-  isNumber: isNumber,
-  isObject: isObject,
-  isUndefined: isUndefined,
-  isDate: isDate,
-  isFile: isFile,
-  isBlob: isBlob,
-  isFunction: isFunction,
-  isStream: isStream,
-  isURLSearchParams: isURLSearchParams,
-  isStandardBrowserEnv: isStandardBrowserEnv,
-  forEach: forEach,
-  merge: merge,
-  extend: extend,
-  trim: trim
+   isArray: isArray,
+   isArrayBuffer: isArrayBuffer,
+   //   isBuffer: isBuffer,
+   isFormData: isFormData,
+   isArrayBufferView: isArrayBufferView,
+   isString: isString,
+   isNumber: isNumber,
+   isObject: isObject,
+   isUndefined: isUndefined,
+   isDate: isDate,
+   isFile: isFile,
+   isBlob: isBlob,
+   isFunction: isFunction,
+   isStream: isStream,
+   isURLSearchParams: isURLSearchParams,
+   isStandardBrowserEnv: isStandardBrowserEnv,
+   forEach: forEach,
+   merge: merge,
+   extend: extend,
+   trim: trim,
+   xmlToJson: xmlToJson
 };
