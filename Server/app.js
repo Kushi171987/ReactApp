@@ -15,6 +15,12 @@ var C = require('./Util/constants');
 var app = express();
 app.locals.title = 'AppServer';
 
+app.use(function(req, res, next) {
+   res.header("Access-Control-Allow-Origin", "*");
+   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+   next();
+});
+
 app.use(logger('dev'));
 app.use(compression());
 app.use(express.json());

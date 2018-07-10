@@ -22,6 +22,8 @@ function getBackendUrl(){
    return backendHost;   
 }
 
+axios.baseUrl = getBackendUrl(); //'';
+
 axios.getBaseUrl = function(){
    return getBackendUrl(); //'';
 }
