@@ -38,7 +38,7 @@ class LeftNav extends Component {
 				{
 					this.state.items.length > 0 &&
 						this.state.items.map((item, i) => (
-							<ListItem key={`item-${item}`}>
+							<ListItem button key={`item-${item}`}>
 								<ListItemText primary={item} onClick={e => {this.props.onClickState(item)}}/>
 							</ListItem>
 						))

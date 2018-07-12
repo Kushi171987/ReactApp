@@ -42,6 +42,14 @@ class Container extends Component {
    //    }
    // }
 
+   // doFetch = (key) => {
+   //    fetch(key).then(response => {
+   //       console.log(response.data);
+   //    }).catch(error => {
+   //       console.error(error);
+   //    });
+   // }
+
 	callApi = key => {
 		Axios.get(key)
 		.then(response => {
