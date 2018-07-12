@@ -18,10 +18,3 @@ body {
   border-style: groove;
   border-width: small;
 }
-
-.Make-Center {
-  text-align: center;
-  vertical-align: middle; 
-  display: flex; 
-  align-items: center;
-}

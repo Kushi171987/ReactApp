@@ -58,16 +58,17 @@ class Container extends Component {
 				name: response.data
 			});
 		}).catch(error => {
-			console.error(error.data);
+         console.error(error.response.statusText);
+         this.setState({
+				name: error.response.statusText
+			});
 		})
 	}
 	
 	render() {
 		return (
 			<div  className='Container'>
-				<span className='Make-Center'>
-					{this.state.name}
-				</span>	
+				{this.state.name}
       	</div>
 		)
 	}

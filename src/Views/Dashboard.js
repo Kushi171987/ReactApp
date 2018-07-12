@@ -15,36 +15,36 @@ import Container from './Container';
 const drawerWidth = 260;
 
 const styles = theme => ({
-  root: {
-    flexGrow: 1,
-  },
-  appFrame: {
-    height: '100%',
-    zIndex: 1,
-    overflow: 'hidden',
-    position: 'relative',
-    display: 'flex',
-    width: '100%',
-  },
-  appBar: {
-    width: `calc(100% - ${drawerWidth}px)`,
-  },
-  'appBar-left': {
-    marginLeft: drawerWidth,
-  },
-  'appBar-right': {
-    marginRight: drawerWidth,
-  },
-  drawerPaper: {
-    position: 'relative',
-    width: drawerWidth,
-  },
-  toolbar: theme.mixins.toolbar,
-  content: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
-    padding: theme.spacing.unit * 3,
-  },
+   root: {
+      flexGrow: 1,
+   },
+   appFrame: {
+      height: '100%',
+      zIndex: 1,
+      overflow: 'hidden',
+      position: 'relative',
+      display: 'flex',
+      width: '100%',
+   },
+   appBar: {
+         zIndex: theme.zIndex.drawer + 1,
+   },
+   //   'appBar-left': {
+   //     marginLeft: drawerWidth,
+   //   },
+   'appBar-right': {
+      marginRight: drawerWidth,
+   },
+   drawerPaper: {
+      position: 'relative',
+      width: drawerWidth,
+   },
+   toolbar: theme.mixins.toolbar,
+   content: {
+      flexGrow: 1,
+      backgroundColor: theme.palette.background.default,
+      padding: theme.spacing.unit * 0.1,
+   },
 });
 
 class Dashboard extends React.Component {
@@ -83,9 +83,9 @@ class Dashboard extends React.Component {
                   className={classNames(classes.appBar, classes[`appBar-${anchor}`])}
                >
                   <Toolbar>
-                  <Typography variant="title" color="inherit" noWrap>
-                     {this.state.selectedItem || "Title"}
-                  </Typography>
+                     <Typography variant="title" color="inherit" noWrap>
+                        {this.state.selectedItem || "Title"}
+                     </Typography>
                   </Toolbar>
                </AppBar>
                {drawer}
