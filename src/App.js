@@ -12,17 +12,17 @@ class App extends Component {
 		this.state = {};
 	}
 
-  render() {
-    return (
-      <Router>
-			<Switch>
-				<Route exact path="/" component={Dashboard}/>
-				<Route path="/about" component={About}/>
-				<Route component={NoMatch}/>
-			</Switch>
-		</Router>
-    );
-  }
+    render() {
+        return (
+            <Router>
+                <Switch>
+                    <Route exact path="/" component={Dashboard}/>
+                    <Route path="/about" component={About}/>
+                    <Route component={NoMatch}/>
+                </Switch>
+            </Router>
+        );
+    }
 }
 
 export default App;
