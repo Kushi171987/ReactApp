@@ -32,8 +32,8 @@ class LeftNav extends Component {
 		const { classes } = this.props;
 		return (
 			<div className='LeftNav'>
-				<InputLabel htmlFor="name-simple">Name </InputLabel>
-          	<Input id="name-simple" value={this.state.name} onKeyPress={this.onPressEnter} onChange={this.handleChange}/>
+				<InputLabel htmlFor="name-simple"> </InputLabel>
+          	<Input  placeholder="Enter the Name" id="name-simple" value={this.state.name} onKeyPress={this.onPressEnter} onChange={this.handleChange}/>
 				<List className={classes.root} subheader={<li />}>
 				{
 					this.state.items.length > 0 &&

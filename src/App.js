@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import Home from './Views/Home';
+import Dashboard from './Views/Dashboard';
 import About from './Views/About';
 import NoMatch from './NoMatch';
 import Chat from './Views/Chat';
@@ -16,7 +16,7 @@ class App extends Component {
     return (
       <Router>
 			<Switch>
-				<Route exact path="/" component={Home}/>
+				<Route exact path="/" component={Dashboard}/>
 				<Route path="/about" component={About}/>
 				<Route component={NoMatch}/>
 			</Switch>

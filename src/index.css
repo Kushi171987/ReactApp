@@ -5,19 +5,18 @@ body {
 }
 
 .LeftNav {
-  float: left;
-  width: 100%;
-  height: 100%;
-  border-style: groove;
-  border-width: medium;
+   padding: 3%;
+   width: 92%;
+   height: 100%;
+   border-style: groove;
+   border-width: small;
 }
 
 .Container {
-  float: right;
   width: 100%;
-  height: 100%;
+  height: 93%;
   border-style: groove;
-  border-width: medium;
+  border-width: small;
 }
 
 .Make-Center {

@@ -7,46 +7,6 @@ import Notifications from './Notifications';
 
 import ErrorBoundary from './Errors/ErrorBoundary';
 
-/*const states = [
-	'Uttar Pradesh',
-	'Maharashtra',
-	'Bihar',
-	'West Bengal',
-	'Madhya Pradesh',
-	'Tamil Nadu',
-	'Rajasthan',
-	'Karnataka',
-	'Gujarat',
-	"Andhra Pradesh",
-	'Odisha',
-	'Telangana',
-	'Kerala',
-	'Jharkhand',
-	'Assam',
-	'Punjab',
-	'Chhattisgarh',
-	'Haryana',
-	'Jammu and Kashmir',
-	'Uttarakhand',
-	"Himachal Pradesh",
-	'Tripura',
-	"Meghalaya",
-	'Manipur',
-	'Nagaland',
-	'Goa',
-	'Arunachal Pradesh',
-	'Mizoram',
-	'Sikkim',
-	'Delhi',
-	'Puducherry',
-	"Chandigarh",
-	"Andaman and Nicobar Islands",
-	'Dadra and Nagar Haveli',
-	'Daman and Diu',
-	'Lakshadweep'
-];*/
-
-
 class Home extends Component {
 	constructor(props){
 		super(props);
