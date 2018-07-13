@@ -57,6 +57,48 @@ class Dashboard extends React.Component {
 		this.setState({selectedItem: item});
 	}
 
+   static getDerivedStateFromProps(props, state){
+      console.log('getDerivedStateFromProps', props, state);
+      return state;
+   }
+
+   /*UNSAFE_componentWillMount(){
+      console.log('UNSAFE_componentWillMount');
+   }*/
+
+   componentDidMount(){
+      console.log('componentDidMount');
+   }
+
+   shouldComponentUpdate(nextProps, nextState){
+      console.log('shouldComponentUpdate', nextProps, nextState);
+      return true;
+   }
+
+   /*UNSAFE_componentWillReceiveProps(nextProps){
+      console.log('UNSAFE_componentWillReceiveProps', nextProps);
+   }*/
+   
+   /*UNSAFE_componentWillUpdate(){
+      console.log('UNSAFE_componentWillUpdate');
+   }*/
+
+   componentDidUpdate(){
+      console.log('componentDidUpdate');
+   }
+
+  /* getSnapshotBeforeUpdate(prevProps, prevState){
+      console.log('getSnapshotBeforeUpdate');
+   }*/
+
+   componentDidCatche(error, info){
+      console.log('componentDidCatche', error, info);
+   }
+
+   componentWillUnmount(){
+      console.log('componentWillUnmount');
+   }
+
    render() {
       const { classes } = this.props;
       const { anchor } = this.state;
