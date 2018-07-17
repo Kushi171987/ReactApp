@@ -7,7 +7,7 @@ import LeftNav from './LeftNav';
 import Container from './Container';
 
 
-const drawerWidth = 260;
+const drawerWidth = 280;
 
 const styles = theme => ({
    root: {

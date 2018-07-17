@@ -42,7 +42,7 @@ class Container extends Component {
    //    }
    // }
 
-   // doFetch = (key) => {
+   // callApi = (key) => {
    //    fetch(key).then(response => {
    //       console.log(response.data);
    //    }).catch(error => {
@@ -52,17 +52,17 @@ class Container extends Component {
 
 	callApi = key => {
 		Axios.get(key)
-		.then(response => {
-			console.log(response.data);
-			this.setState({
-				name: response.data
-			});
-		}).catch(error => {
-         console.error(error.response.statusText);
-         this.setState({
-				name: error.response.statusText
-			});
-		})
+         .then(response => {
+            console.log(response.data);
+            this.setState({
+               name: response.data
+            });
+         }).catch(error => {
+            console.error(error.response.statusText);
+            this.setState({
+               name: error.response.statusText
+            });
+         })
 	}
 	
 	render() {
